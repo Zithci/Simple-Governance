@@ -1,0 +1,535 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background: #ffffff;
+  color: #000000;
+  min-height: 100vh;
+  transition: background 0.15s, color 0.15s;
+}
+
+body.dark {
+  background: #000000;
+  color: #ffffff;
+}
+
+.App {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+h1 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #000000;
+}
+
+body.dark h1 {
+  color: #ffffff;
+}
+
+.theme-toggle {
+  background: transparent;
+  border: 2px solid #000000;
+  color: #000000;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+body.dark .theme-toggle {
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
+.theme-toggle:hover {
+  background: #000000;
+  color: #ffffff;
+}
+
+body.dark .theme-toggle:hover {
+  background: #ffffff;
+  color: #000000;
+}
+
+.connected {
+  background: #f5f5f5;
+  border: 1px solid #e5e5e5;
+  padding: 12px 20px;
+  border-radius: 8px;
+  margin-bottom: 32px;
+  text-align: center;
+  font-size: 14px;
+  font-family: 'Monaco', monospace;
+}
+
+body.dark .connected {
+  background: #1a1a1a;
+  border-color: #333333;
+}
+
+.connect-button {
+  background: #000000;
+  color: #ffffff;
+  border: none;
+  padding: 16px 32px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: block;
+  margin: 0 auto;
+}
+
+body.dark .connect-button {
+  background: #ffffff;
+  color: #000000;
+}
+
+.connect-button:hover {
+  opacity: 0.8;
+}
+
+.create-section {
+  background: #fafafa;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 32px;
+  border: 1px solid #e5e5e5;
+}
+
+body.dark .create-section {
+  background: #0a0a0a;
+  border-color: #1a1a1a;
+}
+
+.create-section h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+
+input {
+   width: 100%;
+  padding: 14px 16px;
+  background: #ffffff;
+  border: 1px solid #d4d4d4;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: all 0.15s;
+}
+
+body.dark input {
+  background: #000000;
+  border-color: #333333;
+  color: #ffffff;
+}
+
+input:focus {
+  outline: none;
+  border-color: #000000;
+}
+
+body.dark input:focus {
+  border-color: #ffffff;
+}
+
+input::placeholder {
+  color: #999999;
+}
+
+button:not(.theme-toggle):not(.connect-button) {
+   width: 100%;
+  background: #000000;
+  color: #ffffff;
+  border: none;
+  padding: 14px 20px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+body.dark button:not(.theme-toggle):not(.connect-button) {
+  background: #ffffff;
+  color: #000000;
+}
+
+button:hover:not(:disabled) {
+  opacity: 0.8;
+}
+
+button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.proposals-section h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.proposal-card {
+  background: #fafafa;
+  border: 1px solid #e5e5e5;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  transition: all 0.15s;
+}
+
+body.dark .proposal-card {
+  background: #0a0a0a;
+  border-color: #1a1a1a;
+}
+
+.proposal-card:hover {
+  border-color: #000000;
+}
+
+body.dark .proposal-card:hover {
+  border-color: #ffffff;
+}
+
+.proposal-card h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.proposal-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 12px 0 16px 0;
+}
+
+.stat {
+  padding: 8px 0;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #666666;
+  margin-bottom: 4px;
+}
+
+body.dark .stat-label {
+  color: #999999;
+}
+
+.stat-value {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.deadline {
+  font-size: 13px;
+  color: #666666;
+  margin-bottom: 16px;
+}
+
+body.dark .deadline {
+  color: #999999;
+}
+
+.vote-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.vote-buttons button {
+  flex: 1;
+}
+
+.loading {
+  width: 14px;
+  height: 14px;
+  border: 2px solid transparent;
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 640px) {
+  .create-section {
+    padding:24px;
+  }
+  
+  h1 {
+    font-size: 24px;
+  }
+  
+  input {
+    flex : 1;
+  }a
+  
+  .proposal-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .proposal-card {
+  background: #fafafa;
+  border: 1px solid #e5e5e5;
+  padding: 24px;
+  border-radius: 16px;
+  margin-bottom: 20px;
+  transition: all 0.15s;
+  position: relative;
+  overflow: hidden;
+}
+
+body.dark .proposal-card {
+  background: #0a0a0a;
+  border-color: #1a1a1a;
+}
+
+.proposal-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #000000 0%, #666666 100%);
+}
+
+body.dark .proposal-card::before {
+  background: linear-gradient(90deg, #ffffff 0%, #666666 100%);
+}
+
+.proposal-card:hover {
+  border-color: #000000;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+body.dark .proposal-card:hover {
+  border-color: #ffffff;
+  box-shadow: 0 8px 16px rgba(255,255,255,0.05);
+}
+
+.proposal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  gap: 16px;
+}
+
+.proposal-id {
+  background: #000000;
+  color: #ffffff;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+body.dark .proposal-id {
+  background: #ffffff;
+  color: #000000;
+}
+
+.proposal-card h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+  flex: 1;
+  line-height: 1.4;
+}
+
+.proposal-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 20px 0;
+  background: #ffffff;
+  padding: 16px;
+  border-radius: 12px;
+}
+
+body.dark .proposal-stats {
+  background: #000000;
+}
+
+.stat {
+  padding: 0;
+  text-align: center;
+}
+
+.stat-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #999999;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.stat-value {
+  font-size: 24px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.stat-value.for {
+  color: #000000;
+}
+
+body.dark .stat-value.for {
+  color: #ffffff;
+}
+
+.stat-value.against {
+  color: #666666;
+}
+
+.deadline {
+  font-size: 13px;
+  color: #666666;
+  margin-bottom: 20px;
+  padding: 12px;
+  background: #f5f5f5;
+  border-radius: 8px;
+  text-align: center;
+}
+
+body.dark .deadline {
+  color: #999999;
+  background: #050505;
+}
+
+.deadline::before {
+  content: '⏱ ';
+}
+
+.vote-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.vote-buttons button {
+  padding: 14px 20px;
+  font-weight: 600;
+  border-radius: 10px;
+}
+
+  
+  button:not(.theme-toggle):not(.connect-button):not(.vote-buttons button) {
+    width: auto;
+    min-width: 140px;
+  }
+
+  .vote-progress {
+  margin: 16px 0;
+}
+
+.progress-bar {
+  height: 8px;
+  background: #e5e5e5;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+body.dark .progress-bar {
+  background: #1a1a1a;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #000000;
+  transition: width 0.3s;
+}
+
+body.dark .progress-fill {
+  background: #ffffff;
+}
+
+.progress-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #666666;
+  margin-top: 8px;
+}
+
+body.dark .progress-labels {
+  color: #999999;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+
+.form-group label {
+ font-size: 14px;
+  font-weight: 600;
+  color: #666666;
+  white-space: nowrap;
+  min-width: 100px;
+}
+
+body.dark .form-group label {
+  color: #999999;
+}
+
+.input-wrapper {
+    display: flex;
+  flex-direction: 1;
+  gap: 12px;  /* ← Jarak antar input & button di mobile */
+}
+
+
+@media (min-width: 640px) {
+  .form-group {
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+  }
+
+  @media (min-width: 640px) {
+  .input-wrapper {
+    flex-direction: row;
+    gap: 16px;  /* ← Jarak antar input & button di desktop, GANTI JADI LEBIH BESAR */
+  }
+  
+  .form-group label {
+    min-width: 100px;
+    text-align: right;
+  }
+
+  
+  
+}
+}
+}
